@@ -29,10 +29,13 @@ The complete project specification, architecture, database schema, and implement
 4. Run the admin portal from the `sparrow-portal-v2-ORBIT-AI-Protection` repo: `npm ci && npm run dev` (http://localhost:3000, proxies `/api` to the backend).
 
 ### Environments (Spring profiles)
-| Profile | Database | Activate |
-|---|---|---|
-| *(default)* dev | `postgresql_v1_orbit_co_in` | nothing to do |
-| `stage` | `postgresql_stage_v1_orbit_co_in` (user `orbit_stage_user`) | `SPRING_PROFILES_ACTIVE=stage` or `./gradlew bootRun --args='--spring.profiles.active=stage'` |
+| Profile | Port | Database | Activate |
+|---|---|---|---|
+| *(default)* dev | 8080 | `postgresql_v1_orbit_co_in` | nothing to do |
+| `stage` | 8081 | `postgresql_stage_v1_orbit_co_in` (user `orbit_stage_user`) | `SPRING_PROFILES_ACTIVE=stage` or `./gradlew bootRun --args='--spring.profiles.active=stage'` |
+
+Dev and stage can run side by side (different ports, different databases).
+The admin portal's Vite proxy targets `http://localhost:8080` (dev); change it to `8081` to use stage.
 
 The stage profile lives in `src/main/resources/application-stage.properties`. It contains no secrets:
 provide `STAGE_DB_PASSWORD` (and optionally `STAGE_DB_HOST`, `STAGE_DB_PORT`, `STAGE_DB_NAME`,
