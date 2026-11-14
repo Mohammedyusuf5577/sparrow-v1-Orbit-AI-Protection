@@ -1,0 +1,27 @@
+# Build output / caches
+.gradle/
+build/
+bin/
+out/
+
+# IDE / editor
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+
+# Local secrets and environment (never commit)
+.env
+.env.*
+!.env.example
+src/main/resources/application-local.properties
+
+# Bundled frontend build (generated from the sparrow-portal-v2 repo)
+src/main/resources/static/
+
+# Logs / OS files
+*.log
+.DS_Store
+Thumbs.db

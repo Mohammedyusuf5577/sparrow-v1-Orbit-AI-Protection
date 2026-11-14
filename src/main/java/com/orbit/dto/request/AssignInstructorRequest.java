@@ -1,0 +1,21 @@
+package com.orbit.dto.request;
+
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.UUID;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class AssignInstructorRequest {
+
+    @NotNull(message = "Project ID is required")
+    private UUID projectId;
+
+    @NotNull(message = "Instructor ID is required")
+    private UUID instructorId;
+}
+
