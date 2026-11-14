@@ -28,4 +28,15 @@ The complete project specification, architecture, database schema, and implement
 3. Run the API: `./gradlew bootRun` (http://localhost:8080, Swagger at `/swagger-ui.html`).
 4. Run the admin portal from the `sparrow-portal-v2-ORBIT-AI-Protection` repo: `npm ci && npm run dev` (http://localhost:3000, proxies `/api` to the backend).
 
+### Environments (Spring profiles)
+| Profile | Database | Activate |
+|---|---|---|
+| *(default)* dev | `postgresql_v1_orbit_co_in` | nothing to do |
+| `stage` | `postgresql_stage_v1_orbit_co_in` (user `orbit_stage_user`) | `SPRING_PROFILES_ACTIVE=stage` or `./gradlew bootRun --args='--spring.profiles.active=stage'` |
+
+The stage profile lives in `src/main/resources/application-stage.properties`. It contains no secrets:
+provide `STAGE_DB_PASSWORD` (and optionally `STAGE_DB_HOST`, `STAGE_DB_PORT`, `STAGE_DB_NAME`,
+`STAGE_DB_USERNAME`) as environment variables, or put `STAGE_DB_PASSWORD` in the gitignored
+`application-local.properties`. The schema is created automatically by Hibernate on first start.
+
 For architecture and schema details see the documentation above.
