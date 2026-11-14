@@ -42,4 +42,17 @@ provide `STAGE_DB_PASSWORD` (and optionally `STAGE_DB_HOST`, `STAGE_DB_PORT`, `S
 `STAGE_DB_USERNAME`) as environment variables, or put `STAGE_DB_PASSWORD` in the gitignored
 `application-local.properties`. The schema is created automatically by Hibernate on first start.
 
+### Run the stage in GitHub Codespaces (free, no server needed)
+1. On GitHub open this repo, then **Code -> Codespaces -> Create codespace on main**.
+2. Wait for setup to finish (first time about 5-8 minutes: PostgreSQL, portal clone, builds).
+3. Open the **Ports** tab: port **3000** = admin portal, port **8080** = API (`/swagger-ui.html`).
+   Ports are **private** (only your GitHub login can open them). Do not make them public:
+   admin login is email-only.
+4. Login: `admin@orbit.com`. Logs: `~/orbit-logs/backend.log` and `~/orbit-logs/frontend.log`.
+5. Optional: add `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`, `RAZORPAY_WEBHOOK_SECRET`,
+   `RAZORPAY_ACCOUNT_NUMBER` as **Codespaces secrets** (GitHub Settings -> Codespaces). Without them,
+   harmless placeholders are used and payments will not work.
+
+The Codespace creates its own PostgreSQL stage database with random secrets that never leave it.
+
 For architecture and schema details see the documentation above.
